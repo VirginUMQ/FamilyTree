@@ -10,6 +10,7 @@ public class FamilyTree {
         this.FamilyName = FamilyName;
         this.HumansFamily = HumansFamily;
         this.countPeople = HumansFamily.size();
+        FileHandler FH = new FileHandler();
     }
 
     @Override
@@ -18,9 +19,7 @@ public class FamilyTree {
         return String.format("\nID Семьи: %d\nФамилия семьи: %s\nКоличество людей: %d", ID, FamilyName, countPeople);
     }
    
-    
-
-
+   
 
     
 }
