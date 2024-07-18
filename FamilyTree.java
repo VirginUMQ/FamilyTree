@@ -10,7 +10,6 @@ public class FamilyTree {
         this.FamilyName = FamilyName;
         this.HumansFamily = HumansFamily;
         this.countPeople = HumansFamily.size();
-        FileHandler FH = new FileHandler();
     }
 
     @Override
