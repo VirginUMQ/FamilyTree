@@ -1,18 +1,18 @@
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-public class Human {
+public class Human implements Serializable {
 
-    int ID;
-    String name;
-    int yearBirth;
-    int yearDeath;
-    String gender;
-    Human father, mother = null;
-    ArrayList<Human> children = new ArrayList<>();
+    private int ID;
+    private String name;
+    private int yearBirth;
+    private int yearDeath;
+    private Gender gender;
+    private Human father, mother = null;
+    private ArrayList<Human> children = new ArrayList<>();
 
 
-    public Human(int ID, String name, int yearBirth, String gender){
+    public Human(int ID, String name, int yearBirth, Gender gender){
         this.ID = ID;
         this.name = name;
         this.yearBirth = yearBirth;
@@ -21,7 +21,7 @@ public class Human {
     }
     
 
-    public Human(int ID, String name, int yearBirth, int yearDeath, String gender){
+    public Human(int ID, String name, int yearBirth, int yearDeath, Gender gender){
         this.ID = ID;
         this.name = name;
         this.yearBirth = yearBirth;
@@ -54,7 +54,7 @@ public class Human {
 
 
     public ArrayList<Human> getParents(){
-        ArrayList parents = new ArrayList<Human>();
+        ArrayList<Human> parents = new ArrayList<Human>();
         parents.add(this.father);
         parents.add(this.mother);
         return parents;
@@ -80,13 +80,16 @@ public class Human {
         SB.append("\nГод смерти: ");
         SB.append(yearDeath);
         SB.append("\nПол: ");
-        SB.append(gender);
+        if(gender == Gender.Male) { SB.append("мужской"); }
+        else { SB.append("женский"); }
         SB.append("\nПапа: ");
         if (father != null) {SB.append(father.name);}
+        else { SB.append("Неизвестно"); }
         SB.append("\nМама: ");
         if (mother != null) {SB.append(mother.name);}
+        else { SB.append("Неизвестно"); }
         SB.append("\nДети: ");
-        SB.append(getChildren(this));
+        SB.append(getChildren(this).toString().replaceAll("^\\[|\\]$",""));
         
         return SB.toString();
     }
