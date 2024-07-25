@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 public class FileHandler implements Writer {
 
-    private String filePath = "C:\\Users\\Admin\\Desktop\\FamilyTree\\Writer\\writer.txt";
+    private String filePath = "C:\\Users\\Admin\\Desktop\\JAVA\\FamilyTree\\Writer\\writer.txt";
 
     @Override
     public void save(Serializable serializable) {
