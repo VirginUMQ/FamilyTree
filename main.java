@@ -1,6 +1,11 @@
 import java.io.Serializable;
 import java.security.AllPermission;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 import Writer.FileHandler;
 
@@ -9,15 +14,30 @@ public class main {
 
 public static void main(String[] args) {
     
-    //FamilyTree f1 = FamilyFirst();  // создать новое дерево
-    FamilyTree f1 = readFamilyTree(); // прочитать дерево из файла
+    FamilyTree f1 = FamilyFirst();  // создать новое дерево
+    //FamilyTree f1 = readFamilyTree(); // прочитать дерево из файла
 
     saveFamilyTree(f1);
 
     System.out.println(f1);
     for (Human h: f1.getHumansFamily()){
-        System.err.print(h);
-    }
+        System.err.print(h);}
+
+    f1.sortName();
+
+    System.out.println("\n\n\n[!][!][!]Сортировка по именам[!][!][!]");
+    System.out.println(f1);
+    for (Human h: f1.getHumansFamily()){
+        System.err.print(h); }
+
+        f1.sortBirthYear();
+
+    System.out.println("\n\n\n[!][!][!]Сортировка по году рождения[!][!][!]");
+    System.out.println(f1);
+    for (Human h: f1.getHumansFamily()){
+        System.err.print(h); }
+
+
 
 }
 
@@ -39,28 +59,28 @@ public static FamilyTree FamilyFirst() {
 
     FamilyTree F1 = new FamilyTree("Соколовы");
 
-    Human h1 = new Human(F1.CreateHumanID(),"Иван", 2000, Gender.Male);
+    Human h1 = new Human(F1.CreateHumanID(), "Иван", LocalDate.of(2000, 1, 1), Gender.Male);
     F1.addHumansFamily(h1);
 
-    Human h1_1 = new Human(F1.CreateHumanID(), "Маша", 2001, Gender.Female);
+    Human h1_1 = new Human(F1.CreateHumanID(), "Маша", LocalDate.of(2002, 2, 2), Gender.Female);
     F1.addHumansFamily(h1_1);
     
-    Human h2 = new Human(F1.CreateHumanID(), "Петр Папа Ивана и Маши", 1970, Gender.Male);
+    Human h2 = new Human(F1.CreateHumanID(), "Петр Папа Ивана и Маши", LocalDate.of(1970, 10, 10), Gender.Male);
     F1.addHumansFamily(h2);
 
-    Human h3 = new Human(F1.CreateHumanID(), "Наталья Мама Ивана и Маши", 1980, Gender.Female);
+    Human h3 = new Human(F1.CreateHumanID(), "Наталья Мама Ивана и Маши", LocalDate.of(1980, 11, 11), Gender.Female);
     F1.addHumansFamily(h3);
 
-    Human h2_1 = new Human(F1.CreateHumanID(), "Василий Папа Петра", 1950, 2020, Gender.Male);
+    Human h2_1 = new Human(F1.CreateHumanID(), "Василий Папа Петра", LocalDate.of(1950, 3, 3), LocalDate.of(2020, 3, 3), Gender.Male);
     F1.addHumansFamily(h2_1);
 
-    Human h2_2 = new Human(F1.CreateHumanID(), "Василиса Мама Петра", 1951, 2022, Gender.Female);
+    Human h2_2 = new Human(F1.CreateHumanID(), "Василиса Мама Петра", LocalDate.of(1951, 4, 4), LocalDate.of(2022, 4, 4), Gender.Female);
     F1.addHumansFamily(h2_2);
 
-    Human h3_1 = new Human(F1.CreateHumanID(), "Василий Папа Натальи", 1952, 2019, Gender.Male);
+    Human h3_1 = new Human(F1.CreateHumanID(), "Василий Папа Натальи", LocalDate.of(1952, 3, 3), LocalDate.of(2019, 3, 3), Gender.Male);
     F1.addHumansFamily(h3_1);
 
-    Human h3_2 = new Human(F1.CreateHumanID(), "Василиса Мама Натальи", 1953, 2023, Gender.Female);
+    Human h3_2 = new Human(F1.CreateHumanID(), "Василиса Мама Натальи", LocalDate.of(1953, 5, 5), LocalDate.of(2023, 3, 3), Gender.Female);
     F1.addHumansFamily(h3_2);
 
     h1.setFather(h2);
