@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-public class Human implements Serializable {
+public class Human implements Serializable, KriteriiFT{
 
     private int ID;
     private String name;
@@ -13,7 +13,7 @@ public class Human implements Serializable {
     private Human father, mother = null;
     private ArrayList<Human> children = new ArrayList<>();
 
-
+    
     public Human(int ID, String name, LocalDate yearBirth, Gender gender){
         this.ID = ID;
         this.name = name;
@@ -41,7 +41,7 @@ public class Human implements Serializable {
     public LocalDate getYearBirth() {
         return yearBirth;
     }
-    
+
     public String setFather(Human father) {
         if (this.father == null) { 
             this.father = father; 

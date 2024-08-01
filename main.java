@@ -12,9 +12,9 @@ import Writer.FileHandler;
 public class main {
 
 
-public static void main(String[] args) {
+public static void main(String[] args){
     
-    FamilyTree f1 = FamilyFirst();  // создать новое дерево
+    FamilyTree<Human> f1 = FamilyFirst();  // создать новое дерево
     //FamilyTree f1 = readFamilyTree(); // прочитать дерево из файла
 
     saveFamilyTree(f1);
@@ -32,7 +32,7 @@ public static void main(String[] args) {
 
         f1.sortBirthYear();
 
-    System.out.println("\n\n\n[!][!][!]Сортировка по году рождения[!][!][!]");
+    System.out.println("\n\n\n[!][!][!]Сортировка по дате рождения[!][!][!]");
     System.out.println(f1);
     for (Human h: f1.getHumansFamily()){
         System.err.print(h); }
@@ -41,12 +41,12 @@ public static void main(String[] args) {
 
 }
 
-private static FamilyTree readFamilyTree(){
+private static FamilyTree<Human> readFamilyTree(){
     FileHandler fileHandler = new FileHandler();
-    return (FamilyTree) fileHandler.read(); // (FamilyTree) - каст, преобразование ссылочных типов
+    return (FamilyTree<Human>) fileHandler.read(); // (FamilyTree) - каст, преобразование ссылочных типов
 }
 
-private static void saveFamilyTree(FamilyTree f1) {
+private static void saveFamilyTree(FamilyTree<Human> f1) {
     FileHandler fileHandler = new FileHandler();
     fileHandler.save(f1);
 }
@@ -55,14 +55,14 @@ private static void saveFamilyTree(FamilyTree f1) {
 
 
 
-public static FamilyTree FamilyFirst() { 
+public static FamilyTree<Human> FamilyFirst() { 
 
-    FamilyTree F1 = new FamilyTree("Соколовы");
+    FamilyTree<Human> F1 = new FamilyTree<>("Соколовы");
 
-    Human h1 = new Human(F1.CreateHumanID(), "Иван", LocalDate.of(2000, 1, 1), Gender.Male);
+    Human h1 = new Human(F1.CreateHumanID(), "Иван", LocalDate.of(2000, 3, 2), Gender.Male);
     F1.addHumansFamily(h1);
 
-    Human h1_1 = new Human(F1.CreateHumanID(), "Маша", LocalDate.of(2002, 2, 2), Gender.Female);
+    Human h1_1 = new Human(F1.CreateHumanID(), "Маша", LocalDate.of(2000, 3, 1), Gender.Female);
     F1.addHumansFamily(h1_1);
     
     Human h2 = new Human(F1.CreateHumanID(), "Петр Папа Ивана и Маши", LocalDate.of(1970, 10, 10), Gender.Male);

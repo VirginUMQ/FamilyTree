@@ -4,10 +4,10 @@ import java.util.Iterator;
 
 
 
-public class FamilyTree implements Serializable, Iterable{
+public class FamilyTree<T extends KriteriiFT> implements Serializable, Iterable<T>{
     private int CreateHumanID = -1;
     private String FamilyName;
-    private ArrayList<Human> HumansFamily = new ArrayList<Human>();
+    private ArrayList<T> HumansFamily = new ArrayList<T>();
 
     public FamilyTree(){
         this.FamilyName = "НЕ ЗАДАНО";
@@ -27,11 +27,11 @@ public class FamilyTree implements Serializable, Iterable{
     }
 
     public void sortName(){
-        HumansFamily.sort(new ComparatorName());
+        HumansFamily.sort(new ComparatorName<>());
     }
 
     public void sortBirthYear(){
-        HumansFamily.sort(new ComparatorBirthDate());
+        HumansFamily.sort(new ComparatorBirthDate<>());
     }
 
     public int CreateHumanID(){
@@ -41,11 +41,11 @@ public class FamilyTree implements Serializable, Iterable{
     
 
 
-    public ArrayList<Human> getHumansFamily() {
+    public ArrayList<T> getHumansFamily() {
         return HumansFamily;
     }
 
-    public String addHumansFamily(Human Human) {
+    public String addHumansFamily(T Human) {
         if(this.HumansFamily.contains(Human)){
         return "Человек уже есть в семейном дереве";
         }
@@ -54,8 +54,8 @@ public class FamilyTree implements Serializable, Iterable{
 
     }
 
-    public String delHuman(Human Human) {
-        for (Human h: HumansFamily){
+    public String delHuman(T Human) {
+        for (T h: HumansFamily){
             if(h.getID() == Human.getID()) {
                 HumansFamily.remove(h);
                 return "Человек удален из семейного дерева";
@@ -72,8 +72,8 @@ public class FamilyTree implements Serializable, Iterable{
     }
 
     @Override
-    public Iterator iterator() {
-       return new HumanIterator(HumansFamily);
+    public Iterator<T> iterator() {
+       return new HumanIterator<>(HumansFamily);
     }
    
     

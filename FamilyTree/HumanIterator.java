@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class HumanIterator implements Iterator<Human>{
+public class HumanIterator<E extends KriteriiFT> implements Iterator<E>{
     
     private int index;
-    private ArrayList<Human> HumansFamily;
+    private ArrayList<E> HumansFamily;
     
-    public HumanIterator(ArrayList<Human> HumansFamily){
+    public HumanIterator(ArrayList<E> HumansFamily){
         this.HumansFamily = HumansFamily;
     }
 
@@ -17,7 +17,7 @@ public class HumanIterator implements Iterator<Human>{
     }
 
     @Override
-    public Human next() {
+    public E next() {
         return HumansFamily.get(index++);
     }
     
